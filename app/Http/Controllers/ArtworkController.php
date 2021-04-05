@@ -27,7 +27,9 @@ class ArtworkController extends Controller
     {
         $artworks = $this->user
 		->artworks()
-		->when(request()->has('limit'), fn ($builder) => $builder->take(request('limit')))
+        ->when(request()->has('limit'), function ($builder) {
+            $builder->take(request('limit'));
+        })
         ->get(['id', 'title', 'description', 'status', 'primary_art', 'height', 'width', 'cost', 'live']);
         return response()->json($artworks->toArray());
     }
