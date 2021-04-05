@@ -27,7 +27,9 @@ class FavFilmController extends Controller
         //
         $faves = $this->user
 		->faves()
-        ->when(request()->has('limit'), fn ($builder) => $builder->take(request('limit')))
+        ->when(request()->has('limit'), function ($builder) {
+            $builder->take(request('limit'));
+        })
         ->get(['id', 'Poster', 'Title', 'Type', 'Year', 'imdbID']);
         return response()->json($faves->toArray());
     }
