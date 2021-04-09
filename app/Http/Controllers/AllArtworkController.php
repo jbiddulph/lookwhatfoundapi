@@ -25,7 +25,7 @@ class AllArtworkController extends Controller
      */
     public function index()
     {
-        $artworks = Artwork::get(['id', 'title', 'description', 'status', 'primary_art', 'height', 'width', 'cost', 'live']);
+        $artworks = Artwork::get();
         return response()->json($artworks->toArray());
     }
 
