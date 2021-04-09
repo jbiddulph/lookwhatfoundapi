@@ -34,6 +34,16 @@ class ArtworkController extends Controller
         return response()->json($artworks->toArray());
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function allArtwork()
+    {
+        $artworks = Artwork::get(['id', 'title', 'description', 'status', 'primary_art', 'height', 'width', 'cost', 'live']);
+        return response()->json($artworks->toArray());
+    }
 
     /**
      * Store a newly created resource in storage.
