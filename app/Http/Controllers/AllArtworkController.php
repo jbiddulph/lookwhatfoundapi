@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class ArtworkController extends Controller
+class AllArtworkController extends Controller
 {
     
     protected $user;
@@ -25,12 +25,7 @@ class ArtworkController extends Controller
      */
     public function index()
     {
-        $artworks = $this->user
-		->artworks()
-        ->when(request()->has('limit'), function ($builder) {
-            $builder->take(request('limit'));
-        })
-        ->get(['id', 'title', 'description', 'status', 'primary_art', 'height', 'width', 'cost', 'live']);
+        $artworks = Artwork::get(['id', 'title', 'description', 'status', 'primary_art', 'height', 'width', 'cost', 'live']);
         return response()->json($artworks->toArray());
     }
 

@@ -24,7 +24,7 @@ Route::group([
 ], function($router) {
     Route::resource('todos', 'TodoController');
     Route::resource('artworks', 'ArtworkController');
-    Route::resource('allartworks', 'ArtworkController@allArtwork');
+    Route::resource('allartworks', 'AllArtworkController');
     Route::resource('favefilms', 'FavFilmController');
     header('Access-Control-Allow-Origin:  *');
     header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
