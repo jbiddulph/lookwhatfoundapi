@@ -30,7 +30,7 @@ class ArtworkController extends Controller
         ->when(request()->has('limit'), function ($builder) {
             $builder->take(request('limit'));
         })
-        ->get(['id', 'title', 'description', 'status', 'primary_art', 'height', 'width', 'cost', 'live']);
+        ->get(['id', 'title', 'description', 'status', 'latitude', 'longitude', 'primary_art', 'height', 'width', 'cost', 'live']);
         return response()->json($artworks->toArray());
     }
 
@@ -59,6 +59,8 @@ class ArtworkController extends Controller
         $artwork->title = $request->title;
         $artwork->description = $request->description;
         $artwork->status = $request->status;
+        $artwork->latitude = $request->latitude;
+        $artwork->longitude = $request->longitude;
         // $artwork->primary_art = $request->primary_art;
         $request->validate([
             'primary_art' => 'required:mimes:jpeg,jpg,png,gif',
@@ -131,6 +133,8 @@ class ArtworkController extends Controller
         $artwork->title = $request->title;
         $artwork->description = $request->description;
         $artwork->status = $request->status;
+        $artwork->latitude = $request->latitude;
+        $artwork->longitude = $request->longitude;
         $artwork->primary_art = $request->primary_art;
         $artwork->height = $request->height;
         $artwork->width = $request->width;
