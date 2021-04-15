@@ -104,7 +104,8 @@ class ArtworkController extends Controller
      */
     public function show(Artwork $artwork)
     {
-        return Artwork::find($artwork);
+        $artworks = Artwork::find($artwork);
+        return response()->json($artworks->toArray());
     }
 
 

@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Validator;
 
 class AllArtworkController extends Controller
 {
-    
+
     protected $user;
 
-    public function __construct() 
+    public function __construct()
     {
         $this->middleware('auth:api');
         $this->user = $this->guard()->user();
@@ -97,7 +97,8 @@ class AllArtworkController extends Controller
      */
     public function show(Artwork $artwork)
     {
-        return $artwork;
+        $artworks = Artwork::find($artwork);
+        return response()->json($artworks->toArray());
     }
 
 
