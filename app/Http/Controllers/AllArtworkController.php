@@ -95,10 +95,9 @@ class AllArtworkController extends Controller
      * @param  \App\Models\Artwork  $artwork
      * @return \Illuminate\Http\Response
      */
-    public function show(Artwork $artwork)
+    public function show(Artwork $allartwork)
     {
-        $artworks = Artwork::find($artwork);
-        return response()->json($artworks->toArray());
+        return $allartwork;
     }
 
 
