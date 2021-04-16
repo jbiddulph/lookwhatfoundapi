@@ -36,7 +36,7 @@ class AllArtworkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $user_id = auth()->user()->id;
         $validator = Validator::make($request->all(), [
@@ -50,43 +50,23 @@ class AllArtworkController extends Controller
             ], 400);
         }
 
-        $artwork = new Artwork();
+        $artwork = Artwork::find($id);
+
         $artwork->title = $request->title;
         $artwork->description = $request->description;
         $artwork->status = $request->status;
-        // $artwork->primary_art = $request->primary_art;
-        $request->validate([
-            'primary_art' => 'required:mimes:jpeg,jpg,png,gif',
-        ]);
-        if($request->hasFile('primary_art')){
-            $file = $request->file('primary_art');
-            $ext = $file->getClientOriginalExtension();
-            $filename = time().'.'.$ext;
-            $file->move('uploads/gallery/', $filename);
-            // User::where('id',$user_id)->update([
-            //     'primary_art'=>$filename
-            // ]);
-            $artwork->primary_art = $filename;
-        } else {
-            $artwork->primary_art = $request->primary_art;
-        }
+        $artwork->primary_art = $request->primary_art;
+        $artwork->latitude = $request->latitude;
+        $artwork->longitude = $request->longitude;
         $artwork->height = $request->height;
         $artwork->width = $request->width;
         $artwork->cost = $request->cost;
         $artwork->live = $request->live;
+        $artwork->created_by = $request->created_by;
+        $artwork->updated_at = $request->updated_at;
 
-        if($this->user->artworks()->save($artwork)){
-            return response()->json([
-                'status' => true,
-                'artwork' => $artwork
-                ]
-            );
-        } else {
-            return response()->json([
-                'status' => false,
-                'message' => 'oops the artwork could not be saved'
-            ]);
-        }
+        $artwork->save();
+
     }
 
     /**
