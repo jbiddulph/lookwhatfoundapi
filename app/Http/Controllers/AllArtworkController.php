@@ -103,6 +103,8 @@ class AllArtworkController extends Controller
             ], 400);
         }
 
+        $artwork = Artwork::find($id);
+
         $artwork->title = $request->title;
         $artwork->description = $request->description;
         $artwork->status = $request->status;
