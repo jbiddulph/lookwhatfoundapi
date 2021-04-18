@@ -88,7 +88,7 @@ class AllArtworkController extends Controller
      * @param  \App\Models\artwork  $artwork
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, artwork $artwork)
+    public function update(Request $request, $id)
     {
         //
         $validator = Validator::make($request->all(), [
