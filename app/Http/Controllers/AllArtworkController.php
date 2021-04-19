@@ -134,7 +134,7 @@ class AllArtworkController extends Controller
      * @param  \App\Models\artwork  $artwork
      * @return \Illuminate\Http\Response
      */
-    public function destroy(artwork $id)
+    public function destroy($id)
     {
         $artwork = Artwork::find($id);
 
