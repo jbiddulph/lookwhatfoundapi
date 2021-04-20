@@ -25,7 +25,7 @@ class AllArtworkController extends Controller
      */
     public function index()
     {
-        $artworks = Artwork::get();
+        $artworks = Artwork::where('live',1)->get();
         return response()->json($artworks->toArray());
     }
 
@@ -61,7 +61,7 @@ class AllArtworkController extends Controller
         $artwork->height = $request->height;
         $artwork->width = $request->width;
         $artwork->cost = $request->cost;
-        $artwork->live = $request->live;
+        $artwork->live = 0;
         $artwork->created_by = $request->created_by;
         $artwork->updated_at = $request->updated_at;
 
@@ -109,6 +109,8 @@ class AllArtworkController extends Controller
         $artwork->description = $request->description;
         $artwork->status = $request->status;
         $artwork->primary_art = $request->primary_art;
+        $artwork->latitude = $request->latitude;
+        $artwork->longitude = $request->longitude;
         $artwork->height = $request->height;
         $artwork->width = $request->width;
         $artwork->cost = $request->cost;
