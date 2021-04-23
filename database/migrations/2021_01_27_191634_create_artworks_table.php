@@ -21,7 +21,7 @@ class CreateArtworksTable extends Migration
             $table->text('primary_art');
             $table->integer('height');
             $table->integer('width');
-            $table->float('cost');
+            $table->float('cost')->default(0.00);
             $table->boolean('live')->default(false);
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
